@@ -227,6 +227,27 @@
   </entry>
   
   <entry>
+    <title>Vuex学习</title>
+    <link href="https://zeroornull.github.io/2021/04/22/Vuex%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://zeroornull.github.io/2021/04/22/Vuex%E5%AD%A6%E4%B9%A0/</id>
+    <published>2021-04-22T05:07:08.000Z</published>
+    <updated>2021-07-26T17:17:11.605Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  Vuex学习</p><p>2021-04-22 13:07:08</p><span id="more"></span><h1 id="Vuex学习"><a href="#Vuex学习" class="headerlink" title="Vuex学习"></a>Vuex学习</h1><h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p>单一状态树</p><blockquote><h4 id="js浅拷贝与深拷贝的区别和实现方式"><a href="#js浅拷贝与深拷贝的区别和实现方式" class="headerlink" title="js浅拷贝与深拷贝的区别和实现方式"></a>js浅拷贝与深拷贝的区别和实现方式</h4></blockquote><p><a href="https://www.jianshu.com/p/1c142ec2ca45">源链接</a></p><p>如何区分深拷贝与浅拷贝，简单点来说，就是假设B复制了A，当修改A时，看B是否会发生变化，如果B也跟着变了，说明这是浅拷贝，拿人手短，如果B没变，那就是深拷贝，自食其力。</p><ol><li>如果是基本数据类型，名字和值都会储存在栈内存中</li></ol><figure class="highlight jsx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">b = a; <span class="comment">// 栈内存会开辟一个新的内存空间，此时b和a都是相互独立的</span></span><br><span class="line">b = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br></pre></td></tr></tbody></table></figure><p>当然，这也算不上深拷贝，因为深拷贝本身只针对较为复杂的object类型数据。</p><ol start="2"><li>如果是引用数据类型，名字存在栈内存中，值存在堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值</li></ol>]]></content>
+    
+    
+    <summary type="html">Vuex学习</summary>
+    
+    
+    
+    <category term="vue" scheme="https://zeroornull.github.io/categories/vue/"/>
+    
+    
+    <category term="vue" scheme="https://zeroornull.github.io/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ES</title>
     <link href="https://zeroornull.github.io/2021/04/13/ES%E7%AC%94%E8%AE%B0/"/>
     <id>https://zeroornull.github.io/2021/04/13/ES%E7%AC%94%E8%AE%B0/</id>
@@ -265,28 +286,6 @@
     
     
     <category term="linux" scheme="https://zeroornull.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vuex学习</title>
-    <link href="https://zeroornull.github.io/2021/04/02/Vuex%E5%AD%A6%E4%B9%A0/"/>
-    <id>https://zeroornull.github.io/2021/04/02/Vuex%E5%AD%A6%E4%B9%A0/</id>
-    <published>2021-04-02T02:26:32.000Z</published>
-    <updated>2021-07-26T08:21:13.935Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Vuex学习"><a href="#Vuex学习" class="headerlink" title="Vuex学习"></a>Vuex学习</h1><h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p>单一状态树</p><blockquote><h4 id="js浅拷贝与深拷贝的区别和实现方式"><a href="#js浅拷贝与深拷贝的区别和实现方式" class="headerlink" title="js浅拷贝与深拷贝的区别和实现方式"></a>js浅拷贝与深拷贝的区别和实现方式</h4></blockquote><p><a href="https://www.jianshu.com/p/1c142ec2ca45">源链接</a></p><p>如何区分深拷贝与浅拷贝，简单点来说，就是假设B复制了A，当修改A时，看B是否会发生变化，如果B也跟着变了，说明这是浅拷贝，拿人手短，如果B没变，那就是深拷贝，自食其力。</p><ol><li>如果是基本数据类型，名字和值都会储存在栈内存中</li></ol><figure class="highlight jsx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">b = a; <span class="comment">// 栈内存会开辟一个新的内存空间，此时b和a都是相互独立的</span></span><br><span class="line">b = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br></pre></td></tr></tbody></table></figure><p>当然，这也算不上深拷贝，因为深拷贝本身只针对较为复杂的object类型数据。</p><ol start="2"><li>如果是引用数据类型，名字存在栈内存中，值存在堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值</li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;Vuex学习&quot;&gt;&lt;a href=&quot;#Vuex学习&quot; class=&quot;headerlink&quot; title=&quot;Vuex学习&quot;&gt;&lt;/a&gt;Vuex学习&lt;/h1&gt;&lt;h2 id=&quot;State&quot;&gt;&lt;a href=&quot;#State&quot; class=&quot;headerlink&quot; title=</summary>
-      
-    
-    
-    
-    
-    <category term="vue" scheme="https://zeroornull.github.io/tags/vue/"/>
     
   </entry>
   
