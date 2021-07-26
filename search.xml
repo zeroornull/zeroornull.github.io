@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>使用cloudflare免费加速github page</title>
+      <link href="2021/07/26/%E4%BD%BF%E7%94%A8cloudflare%E5%8A%A0%E9%80%9FgithubPage/"/>
+      <url>2021/07/26/%E4%BD%BF%E7%94%A8cloudflare%E5%8A%A0%E9%80%9FgithubPage/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  使用cloudflare免费加速github page</p><p>​        2021-07-26 14:00:16</p><span id="more"></span><h1 id="使用cloudflare免费加速github-page"><a href="#使用cloudflare免费加速github-page" class="headerlink" title="使用cloudflare免费加速github page"></a>使用cloudflare免费加速github page</h1><h2 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h2><p>github page 在国内访问速度非常慢，而且近期 github.io 的域名经常被干扰解析成<code>127.0.0.1</code>，迫于无奈在网上找到了一个能白嫖加速 github page 的办法，就是套一层 cloudflare CDN，虽然它在国内没有 CDN 节点，但是整体效果是完爆 github.io，不过要注意的是免费版本是有请求次数限制的，每天 10W 次，当然这足够我的小博客使用了，这里记录一下操作步骤。</p><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="准备域名"><a href="#准备域名" class="headerlink" title="准备域名"></a>准备域名</h3><p>随便到哪买一个</p><p>国内好像得备案</p><h3 id="设置-github-page"><a href="#设置-github-page" class="headerlink" title="设置 github page"></a>设置 github page</h3><h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://gitee.com/penno/blogimg/raw/master/img/g5yOSXAVPsU6QZi.png" alt="image-20210726134824948"></h3><p>保存之后 github 会<code>自动</code>的在仓库根目录里生成一个<code>CNAME</code>文件，里面存储着域名配置信息</p><h3 id="设置域名解析"><a href="#设置域名解析" class="headerlink" title="设置域名解析"></a>设置域名解析</h3><p>可以使用这个</p><p><a href="https://zijian.aliyun.com/?spm=a2c1d.8251892.content.11.7c5c5b76F5cVb1#/domainDetect">https://zijian.aliyun.com/?spm=a2c1d.8251892.content.11.7c5c5b76F5cVb1#/domainDetect</a></p><p>通过域名提供商，修改刚刚的域名解析，通过 A 记录分别解析到以下 4 个 IP：</p><p>添加到自己的 域名解析那里</p><p>当记录全部解析生效时，就可以通过<code>你自己的设置的域名</code>访问到博客了，这个时候再开启<code>HTTPS</code>，示例图：</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/2020-08-20-18-24-13.png" alt="img"></p><p>然后 github 会自动签发提供给<code>你自己的设置的域名</code>域名使用的 SSL 证书，等待一段时间后，就可以通过<code>HTTPS</code>访问博客了。</p><h3 id="使用-cloudflare-CDN"><a href="#使用-cloudflare-CDN" class="headerlink" title="使用 cloudflare CDN"></a>使用 cloudflare CDN</h3><p>上面的步骤全部就绪之后，就可以开始白嫖之路了</p><ol><li><p>先通过<a href="https://dash.cloudflare.com/sign-up%E9%93%BE%E6%8E%A5%E8%BF%9B%E8%A1%8C%E6%B3%A8%E5%86%8C">https://dash.cloudflare.com/sign-up链接进行注册</a></p></li><li><p>添加站点，把对应的域名填写进去：</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/2020-08-20-18-31-57.png" alt="img"></p></li><li><p>提交之后会自动扫描域名对应的解析记录：</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/2020-08-20-18-32-34.png" alt="img"></p></li><li><p>查看 cloudfalre 对应的 NS 记录</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/2020-08-20-18-33-46.png" alt="img"></p></li><li><p>通过域名的运营商修改对应的 NS 记录，这里每个运营商的修改方式都不一样，我这里是用的阿里云的：</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/2020-08-20-18-36-57.png" alt="img"></p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/2020-08-20-18-37-25.png" alt="img"></p></li><li><p>这样就设置完毕了</p></li></ol><p>可以看到 dns 解析的 ip 已经变了，已经被 cloudflare 接管了，<br>然后清除下浏览器 DNS 缓存，chrome 浏览器输入<code>chrome://net-internals/#dns</code>进入清除页：</p><p>再次访问<code>你自己的设置的域名</code>，F12 打开网络面板可以看到已经用上了 CDN 了：</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/2020-08-20-18-43-05.png" alt="img"></p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>一直白嫖一直爽，但是<code>cloudflare</code>不一定一直会提供免费版的，如果有一天它挂了，只需要把 DNS 的 NS 解析记录再还原回去就行了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> githubpage </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> githubpage </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>改造eladmin为前后端一起部署</title>
+      <link href="2021/06/25/%E6%94%B9%E9%80%A0eladmin%E4%B8%BA%E5%89%8D%E5%90%8E%E7%AB%AF%E4%B8%80%E8%B5%B7%E9%83%A8%E7%BD%B2/"/>
+      <url>2021/06/25/%E6%94%B9%E9%80%A0eladmin%E4%B8%BA%E5%89%8D%E5%90%8E%E7%AB%AF%E4%B8%80%E8%B5%B7%E9%83%A8%E7%BD%B2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  改造eladmin为前后端一起部署</p><p>2021-06-25 15:07:08</p><span id="more"></span><p>用了很多方法，不介绍失败的方法了，直接上成功的</p><h2 id="首先改造前端"><a href="#首先改造前端" class="headerlink" title="首先改造前端"></a>首先改造前端</h2><p>1.更改<code>.env.production</code></p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210523224726.png" alt="image-20210523224726030"></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">VUE_APP_BASE_API  = 'http://47.99.209.106:18061'</span><br><span class="line">VUE_APP_WS_API = 'ws://47.99.209.106:18061'</span><br></pre></td></tr></tbody></table></figure><p>改成对应的后端接口</p><p>2.更改vue.config.js</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210523224805.png" alt="image-20210523224805657"></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">publicPath: process.env.NODE_ENV === 'development' ? '/' : './',</span><br></pre></td></tr></tbody></table></figure><p>3.更改router.js</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210523224858.png" alt="image-20210523224858317"></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mode: 'hash',</span><br></pre></td></tr></tbody></table></figure><h2 id="然后就是后端"><a href="#然后就是后端" class="headerlink" title="然后就是后端"></a>然后就是后端</h2><p>1、添加META-INF/resource/</p><p>将前端打包好的dist放在下面</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210523225108.png" alt="image-20210523225108200"></p><p>2、给<code>SpringSecurityConfig</code>添加图上四个 暂不确定是否都必须</p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210523225245.png" alt="image-20210523225245250"></p><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>部署后的项目web加载很慢 很奇怪    </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> eladmin </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> eladmin </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>部署nginx二级目录</title>
+      <link href="2021/06/25/%E9%83%A8%E7%BD%B2nginx%E4%BA%8C%E7%BA%A7%E7%9B%AE%E5%BD%95/"/>
+      <url>2021/06/25/%E9%83%A8%E7%BD%B2nginx%E4%BA%8C%E7%BA%A7%E7%9B%AE%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>  最近的elasticsearch笔记</p><p>2021-06-25 13:07:08</p><span id="more"></span><p>项目为eladmin 前端 vue</p><p>主要的问题是前端更改配置 及部分nginx修改</p><p>参考链接: <a href="https://blog.csdn.net/qq_38319289/article/details/111867185">https://blog.csdn.net/qq_38319289/article/details/111867185</a></p><h3 id="1-修改-router-router-js"><a href="#1-修改-router-router-js" class="headerlink" title="1.修改 router/router.js"></a>1.修改 router/router.js</h3><p>添加一行</p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base: 'xinfuwu',</span><br></pre></td></tr></tbody></table></figure><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210517001420.png" alt="image-20210517001420375"></p><h3 id="2、然后修改-vue-config-js"><a href="#2、然后修改-vue-config-js" class="headerlink" title="2、然后修改 vue.config.js"></a>2、然后修改 vue.config.js</h3><p>更改一行</p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">publicPath: '/xinfuwu/',</span><br></pre></td></tr></tbody></table></figure><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210517001626.png" alt="image-20210517001626470"></p><h3 id="3、部署时，通过NGINX的反向代理"><a href="#3、部署时，通过NGINX的反向代理" class="headerlink" title="3、部署时，通过NGINX的反向代理"></a>3、部署时，通过NGINX的反向代理</h3><p>首先，给需要部署的项目定义一个 NGINX 的 server</p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server {</span><br><span class="line">        listen 4071;</span><br><span class="line">        location / {</span><br><span class="line">             #vue h5 history mode 时配置</span><br><span class="line">            try_files $uri $uri/ /xinfuwu_web/index.html;</span><br><span class="line">    </span><br><span class="line">             root html/xinfuwu_web;</span><br><span class="line">             index index.html index.htm;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure><p>再到配置域名的主配置server上做反向代理</p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">location /xinfuwu/api/ {</span><br><span class="line">          client_max_body_size 40M;</span><br><span class="line">          proxy_pass http://127.0.0.1:10088/;</span><br><span class="line">          proxy_set_header   X-Forwarded-Proto $scheme;</span><br><span class="line">           proxy_set_header   Host              $http_host;</span><br><span class="line">          proxy_set_header   X-Real-IP         $remote_addr;</span><br><span class="line">        }</span><br><span class="line">location ^~/xinfuwu/ {</span><br><span class="line">          proxy_redirect off;</span><br><span class="line">          proxy_set_header Host $host;</span><br><span class="line">          proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">          proxy_pass http://127.0.0.1:4071/;</span><br><span class="line">        }</span><br></pre></td></tr></tbody></table></figure><h3 id="4-env-production也需要修改"><a href="#4-env-production也需要修改" class="headerlink" title="4.env.production也需要修改"></a>4.env.production也需要修改</h3><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210517001821.png" alt="image-20210517001821294"></p><p>baseapi修改为 ‘/xinfuwu/api’</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> nginx </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ES</title>
       <link href="2021/04/13/ES%E7%AC%94%E8%AE%B0/"/>
       <url>2021/04/13/ES%E7%AC%94%E8%AE%B0/</url>
