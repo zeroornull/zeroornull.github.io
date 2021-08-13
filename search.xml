@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Java线程池学习总结</title>
+      <link href="2021/08/13/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+      <url>2021/08/13/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>   Java线程池学习总结</p><p>​        2021-08-13 08:28:27</p><span id="more"></span><p><a href="https://snailclimb.gitee.io/javaguide/#/./docs/java/multi-thread/java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93">参考链接https://snailclimb.gitee.io/javaguide/#/./docs/java/multi-thread/java%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93</a></p><p><a href="https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html">https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html</a></p><p><a href="https://www.cnblogs.com/thisiswhy/p/12690630.html">https://www.cnblogs.com/thisiswhy/p/12690630.html</a></p><p><a href="https://blog.csdn.net/woshiluoye9/article/details/60883461">https://blog.csdn.net/woshiluoye9/article/details/60883461</a></p><p><img src="https://gitee.com/penno/blogimg/raw/master/img/20210812123219.png" alt="img"></p><p>守护线程： Daemon Thread<br>java中的线程有两类，守护线程和用户线程<br>守护线程指在程序运行在后台的一种特殊线程，为其他的线程服务，比如垃圾回收线程就是一个很称职的守护线程。它并不属于程序中不可或缺的部分，但是确实是很有用的， 如果用户线程已经全部退出运行了，只剩下守护线程存在了，虚拟机也就退出了，但是用户进程只要还存在一个，虚拟机就不会退出。<br>守护线程有几个特点：<br>1、 thread.setDaemon(true)必须在thread.start()之前设置，你不能把一个正在运行的线程转化为守护线程<br>2、 在守护线程内的产生的线程也是守护线程<br>3、 永远不要试图利用守护线程去访问文件、数据库等固有资源，因为守护线程可以被任何用户线程所中断，线程的优先级最低。</p><p>还没写完、、、</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>路上的狗子</title>
       <link href="2021/08/03/%E8%B7%AF%E4%B8%8A%E7%9A%84%E7%8B%97%E5%AD%90/"/>
       <url>2021/08/03/%E8%B7%AF%E4%B8%8A%E7%9A%84%E7%8B%97%E5%AD%90/</url>
